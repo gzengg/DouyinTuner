@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LSPosed 作用域：仅抖音 -->
+    <string-array name="xposed_scope">
+        <item>com.ss.android.ugc.aweme</item>
+    </string-array>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">抖音精简助手</string>
+    <string name="module_name">抖音精简助手</string>
+    <string name="module_desc">内存优化 / 界面精简 / 去广告 / 禁更新 / 无水印直链\n\n目标：抖音 com.ss.android.ugc.aweme 40.7.0\n\n用法：LSPosed 里启用模块并勾选作用域「抖音」，然后强制停止抖音再打开。</string>
+</resources>

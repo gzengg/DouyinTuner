@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault.Light">
+
+        <!-- Xposed 模块入口 -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+
+        <meta-data
+            android:name="xposeddescription"
+            android:value="@string/module_desc" />
+
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+
+        <!-- LSPosed 作用域：抖音 -->
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposed_scope" />
+
+        <!-- 面板本体:
+             - exported 是为了隐藏桌面图标后仍能从 LSPosed / adb 打开;
+             - MODULE_SETTINGS / INFO 两个 category 是 LSPosed「模块设置」的查找目标
+               (LSPosed 先找 de.robv.android.xposed.category.MODULE_SETTINGS,
+                再退到 CATEGORY_INFO,命中后用显式组件名启动,所以图标隐藏也不影响);
+             - 两个 filter 都没有 LAUNCHER category,所以桌面不会出现第二个图标 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.INFO" />
+            </intent-filter>
+        </activity>
+
+        <!-- 桌面图标：隐藏开关只关这个 alias,面板本体不动 -->
+        <activity-alias
+            android:name=".Launcher"
+            android:targetActivity=".MainActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+    </application>
+
+</manifest>

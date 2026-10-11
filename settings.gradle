@@ -1,0 +1,26 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        google()
+        mavenCentral()
+        // Xposed / LSPosed API 仓库
+        maven {
+            name = 'XposedRepo'
+            url = 'https://api.xposed.info/'
+            content {
+                includeGroup 'de.robv.android.xposed'
+            }
+        }
+    }
+}
+
+rootProject.name = "DouyinTuner"
+include ':app'
